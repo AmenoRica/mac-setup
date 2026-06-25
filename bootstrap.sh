@@ -22,4 +22,6 @@ fi
 brew update
 brew bundle --file "${ROOT_DIR}/Brewfile"
 
+"${ROOT_DIR}/scripts/apply-codex-theme.sh"
+
 echo "Bootstrap complete."
