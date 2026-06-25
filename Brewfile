@@ -26,5 +26,9 @@ cask "telegram"
 # 브라우저
 cask "google-chrome"
 
+# 게임
+cask "steam"
+cask "crossover"
+
 # 프로그래밍 도구
 cask "visual-studio-code"
