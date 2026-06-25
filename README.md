@@ -18,6 +18,15 @@ cd ~/mac-setup
 - `README.md`: 설정 방법 설명
 - `bootstrap.sh`: 설정 진입점
 
+## 자동 설정
+
+`bootstrap.sh`는 `brew bundle` 실행 후 아래 설정을 적용합니다.
+
+- Codex 테마: Catppuccin Latte 기반, Rosewater 포인트 컬러
+- VS Code: Catppuccin Latte 테마, Rosewater 포인트 컬러, 공통 글꼴
+- Ghostty: Catppuccin Latte 테마, 공통 글꼴, 불투명도 70%, 상하좌우 여백
+- Starship: 공식 Jetpack preset
+
 ## 주의사항
 
 Steam은 Intel macOS 앱이라 Apple Silicon Mac에서 Rosetta 2가 필요합니다.
@@ -28,3 +37,10 @@ softwareupdate --install-rosetta --agree-to-license
 ```
 
 Rosetta 2는 설치 후 제거가 어렵습니다.
+
+## 수동 설치
+
+Codex, VS Code, Ghostty는 아래 폰트를 사용합니다. 폰트 파일은 직접 받아서 설치합니다.
+
+- [Yutapon Coding](https://www.freejapanesefont.com/yutapon-coding-font-download)
+- [온글잎 긍정](https://www.ownglyph.com/trial/0c49e349-2997-43c8-b267-82dcdd2c632f)

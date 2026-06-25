@@ -17,6 +17,9 @@ awk '
   /^\[/ { in_desktop = 0 }
   in_desktop == 1 && /^appearanceTheme[[:space:]]*=/ { next }
   in_desktop == 1 && /^appearanceLightCodeThemeId[[:space:]]*=/ { next }
+  in_desktop == 1 && /^appearanceDiffMarkerStyle[[:space:]]*=/ { next }
+  in_desktop == 1 && /^sansFontSize[[:space:]]*=/ { next }
+  in_desktop == 1 && /^codeFontSize[[:space:]]*=/ { next }
   { print }
 ' "$CONFIG_FILE" > "$TMP_FILE"
 
@@ -32,6 +35,9 @@ awk '
     print
     print "appearanceTheme = \"light\""
     print "appearanceLightCodeThemeId = \"catppuccin\""
+    print "appearanceDiffMarkerStyle = \"color\""
+    print "sansFontSize = 20"
+    print "codeFontSize = 17"
     inserted = 1
     next
   }
@@ -42,6 +48,9 @@ awk '
       print "[desktop]"
       print "appearanceTheme = \"light\""
       print "appearanceLightCodeThemeId = \"catppuccin\""
+      print "appearanceDiffMarkerStyle = \"color\""
+      print "sansFontSize = 20"
+      print "codeFontSize = 17"
     }
   }
 ' "$CONFIG_FILE" > "$TMP_FILE"
@@ -58,6 +67,8 @@ opaqueWindows = false
 surface = "#eff1f5"
 
 [desktop.appearanceLightChromeTheme.fonts]
+code = "'Yutapon Coding Regular', '온글잎 긍정'"
+ui = "'Yutapon Coding Regular', '온글잎 긍정'"
 
 [desktop.appearanceLightChromeTheme.semanticColors]
 diffAdded = "#40a02b"
