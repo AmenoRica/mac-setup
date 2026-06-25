@@ -31,4 +31,5 @@ cask "steam"
 cask "crossover"
 
 # 프로그래밍 도구
+cask "codex-app"
 cask "visual-studio-code"
