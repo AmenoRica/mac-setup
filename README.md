@@ -1,38 +1,22 @@
 # Mac Setup
 
-Fresh Mac setup notes, scripts, and package lists.
+Minimal, reproducible Mac setup.
 
-The goal of this repository is simple:
-
-1. Record every setup decision we make.
-2. Keep setup commands repeatable.
-3. Make the next Mac restore require as few manual steps as possible.
-
-## Quick Start
-
-On a new Mac:
+## First Run
 
 ```sh
 xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 git clone <this-repo-url> ~/mac-setup
 cd ~/mac-setup
-./scripts/bootstrap.sh
+./bootstrap.sh
 ```
 
-Replace `<this-repo-url>` after the GitHub repository is created.
+## Files
 
-## Repository Layout
+- `.gitignore`: ignored local files.
+- `Brewfile`: Homebrew packages and apps.
+- `README.md`: setup instructions.
+- `bootstrap.sh`: setup entrypoint.
 
-- `Brewfile`: Homebrew packages, casks, and Mac App Store apps.
-- `scripts/bootstrap.sh`: idempotent bootstrap entrypoint.
-- `scripts/macos-defaults.sh`: macOS preference tweaks.
-- `docs/setup-log.md`: chronological record of what changed and why.
-- `docs/decisions.md`: durable decisions and tradeoffs.
-- `CHECKLIST.md`: setup checklist for this Mac.
-
-## Working Rule
-
-When we install or configure something manually, we also update this repository
-before moving on.
-
+Add future files under subdirectories unless they are core entrypoint files.
