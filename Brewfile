@@ -23,5 +23,8 @@ cask "discord"
 mas "KakaoTalk", id: 869223134
 cask "telegram"
 
+# 브라우저
+cask "google-chrome"
+
 # 프로그래밍 도구
 cask "visual-studio-code"
