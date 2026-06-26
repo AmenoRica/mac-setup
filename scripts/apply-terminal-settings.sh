@@ -26,7 +26,7 @@ background-opacity-cells = true
 background-blur = 30
 
 window-padding-x = 150
-window-padding-y = 100
+window-padding-y = 75
 window-padding-color = background
 
 cursor-color = #dc8a78
