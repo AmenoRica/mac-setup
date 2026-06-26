@@ -47,12 +47,12 @@ Object.assign(settings, {
   "workbench.colorTheme": "Catppuccin Latte",
   "catppuccin.accentColor": "rosewater",
   "editor.accessibilitySupport": "off",
-  "editor.fontFamily": "'Yutapon Coding VSCode', 'Yutapon Coding Regular', '온글잎 긍정', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Yutapon Coding VSCode Integrated', 'Symbols Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.lineNumbers": "relative",
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": false,
   "editor.experimentalWhitespaceRendering": "svg",
-  "terminal.integrated.fontFamily": "'Yutapon Coding VSCode', 'Yutapon Coding Regular', '온글잎 긍정', monospace"
+  "terminal.integrated.fontFamily": "'Yutapon Coding VSCode Integrated', 'Symbols Nerd Font', monospace"
 });
 
 fs.writeFileSync(path, `${JSON.stringify(settings, null, 4)}\n`);

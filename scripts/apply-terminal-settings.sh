@@ -16,9 +16,8 @@ mkdir -p "$GHOSTTY_DIR" "$(dirname "$STARSHIP_CONFIG")"
 cat > "${GHOSTTY_DIR}/config" <<'EOF'
 theme = "Catppuccin Latte"
 
-font-family = "Yutapon Coding Regular"
-font-family = "온글잎 긍정"
-font-family = "ComicShannsMono Nerd Font"
+font-family = "Yutapon Coding VSCode Integrated"
+font-family = "Symbols Nerd Font"
 font-size = 23
 
 background-opacity = 0.80

@@ -67,8 +67,8 @@ opaqueWindows = false
 surface = "#eff1f5"
 
 [desktop.appearanceLightChromeTheme.fonts]
-code = "'Yutapon Coding Regular', '온글잎 긍정'"
-ui = "'Yutapon Coding Regular', '온글잎 긍정'"
+code = "'Yutapon Coding VSCode Integrated', 'Symbols Nerd Font'"
+ui = "'Yutapon Coding VSCode Integrated', 'Symbols Nerd Font'"
 
 [desktop.appearanceLightChromeTheme.semanticColors]
 diffAdded = "#40a02b"
