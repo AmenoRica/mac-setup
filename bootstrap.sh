@@ -23,6 +23,7 @@ brew update
 brew bundle --file "${ROOT_DIR}/Brewfile"
 
 "${ROOT_DIR}/scripts/apply-codex-theme.sh"
+"${ROOT_DIR}/scripts/patch-yutapon-vscode-font.sh"
 "${ROOT_DIR}/scripts/apply-vscode-settings.sh"
 "${ROOT_DIR}/scripts/apply-terminal-settings.sh"
 

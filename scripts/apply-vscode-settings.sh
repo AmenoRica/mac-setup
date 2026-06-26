@@ -12,6 +12,7 @@ if [[ ! -x "$CODE_BIN" && "$CODE_BIN" == /* ]]; then
 fi
 
 "$CODE_BIN" --install-extension Catppuccin.catppuccin-vsc
+"$CODE_BIN" --install-extension vscodevim.vim
 
 SETTINGS_DIR="${VSCODE_SETTINGS_DIR:-${HOME}/Library/Application Support/Code/User}"
 SETTINGS_FILE="${SETTINGS_DIR}/settings.json"
@@ -39,11 +40,19 @@ if (fs.existsSync(path)) {
   settings = raw.length === 0 ? {} : JSON.parse(raw);
 }
 
+delete settings["editor.disableMonospaceOptimizations"];
+delete settings["editor.experimentalGpuAcceleration"];
+
 Object.assign(settings, {
   "workbench.colorTheme": "Catppuccin Latte",
   "catppuccin.accentColor": "rosewater",
-  "editor.fontFamily": "'Yutapon Coding Regular', '온글잎 긍정', Menlo, Monaco, 'Courier New', monospace",
-  "terminal.integrated.fontFamily": "'Yutapon Coding Regular', '온글잎 긍정', monospace"
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "'Yutapon Coding VSCode', 'Yutapon Coding Regular', '온글잎 긍정', Menlo, Monaco, 'Courier New', monospace",
+  "editor.lineNumbers": "relative",
+  "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": false,
+  "editor.experimentalWhitespaceRendering": "svg",
+  "terminal.integrated.fontFamily": "'Yutapon Coding VSCode', 'Yutapon Coding Regular', '온글잎 긍정', monospace"
 });
 
 fs.writeFileSync(path, `${JSON.stringify(settings, null, 4)}\n`);
