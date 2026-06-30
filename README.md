@@ -20,8 +20,10 @@ cd ~/mac-setup
 
 ## 자동 설정
 
-`bootstrap.sh`는 `brew bundle` 실행 후 아래 설정을 적용합니다.
+`bootstrap.sh`는 `brew bundle install --no-upgrade` 실행 후 아래 설정을 적용합니다.
+재실행할 때 이미 설치된 앱을 자동 업그레이드하지 않으므로 실행 중인 Codex 같은 앱을 건드리지 않습니다.
 
+- 런타임 버전 관리: mise로 Node.js/npm/Python 기본 버전 관리
 - Codex 테마: Catppuccin Latte 기반, Rosewater 포인트 컬러
 - Nerd Fonts Symbols Only: Nerd Font 심볼 전용 폰트 설치
 - VS Code: Catppuccin Latte 테마, Rosewater 포인트 컬러, 통합 글꼴
@@ -39,6 +41,49 @@ softwareupdate --install-rosetta --agree-to-license
 ```
 
 Rosetta 2는 설치 후 제거가 어렵습니다.
+
+## Node.js/npm/Python 버전 관리
+
+Node.js, npm, Python은 Homebrew의 개별 런타임 패키지를 직접 쓰지 않고 `mise`로 관리합니다.
+`bootstrap.sh`는 Homebrew로 `mise`를 설치한 뒤 `config/mise/config.toml`을 `~/.config/mise/config.toml`에 복사하고,
+`~/.zshrc`에 아래 활성화 구문을 추가합니다.
+
+```sh
+eval "$(mise activate zsh)"
+```
+
+기본 버전은 아래처럼 설정합니다.
+
+```toml
+[tools]
+node = "lts"
+python = "latest"
+```
+
+Node.js는 LTS를 기본으로 쓰며 npm은 Node.js에 포함된 버전을 사용합니다.
+Python은 Node.js처럼 LTS 채널이 없어서 최신 안정 버전을 기본으로 둡니다.
+
+현재 셸에서 바로 적용하려면 새 터미널을 열거나 아래 명령을 실행합니다.
+
+```sh
+source ~/.zshrc
+```
+
+설치된 버전은 아래 명령으로 확인합니다.
+
+```sh
+node --version
+npm --version
+python --version
+mise ls
+```
+
+기본 버전을 바꾸려면 저장소의 `config/mise/config.toml`을 수정한 뒤 다시 `./bootstrap.sh`를 실행합니다.
+`scripts/apply-vscode-settings.sh`도 이 파일의 Node.js 기본 버전을 읽어 설정 업데이트에 사용합니다.
+특정 프로젝트만 다른 버전을 써야 하면 해당 프로젝트 안에서 `mise use node@20`처럼 실행해 프로젝트용 `mise.toml`을 만듭니다.
+
+`bootstrap.sh`는 기존 Homebrew `node`/`npm`/`python@3.14`가 단독 설치되어 있으면 제거합니다.
+다른 Homebrew 패키지가 의존하는 런타임은 강제로 제거하지 않습니다.
 
 ## 수동 설치
 

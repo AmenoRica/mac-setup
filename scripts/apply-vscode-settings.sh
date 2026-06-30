@@ -14,23 +14,47 @@ fi
 "$CODE_BIN" --install-extension Catppuccin.catppuccin-vsc
 "$CODE_BIN" --install-extension vscodevim.vim
 
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MISE_CONFIG="${ROOT_DIR}/config/mise/config.toml"
 SETTINGS_DIR="${VSCODE_SETTINGS_DIR:-${HOME}/Library/Application Support/Code/User}"
 SETTINGS_FILE="${SETTINGS_DIR}/settings.json"
 mkdir -p "$SETTINGS_DIR"
 
 NODE_BIN="${NODE_BIN:-}"
+NODE_CMD=()
 if [[ -z "$NODE_BIN" ]]; then
-  if command -v node >/dev/null 2>&1; then
-    NODE_BIN="$(command -v node)"
+  if command -v mise >/dev/null 2>&1; then
+    MISE_NODE_VERSION="$(
+      awk '
+        /^\[tools\]$/ { in_tools = 1; next }
+        /^\[/ { in_tools = 0 }
+        in_tools && $1 == "node" {
+          value = $0
+          sub(/^[^=]*=[[:space:]]*/, "", value)
+          gsub(/^[[:space:]"]+|[[:space:]"]+$/, "", value)
+          print value
+          exit
+        }
+      ' "$MISE_CONFIG"
+    )"
+    if [[ -z "$MISE_NODE_VERSION" ]]; then
+      echo "Node.js is not configured in ${MISE_CONFIG}."
+      exit 1
+    fi
+    NODE_CMD=("$(command -v mise)" exec "node@${MISE_NODE_VERSION}" -- node)
+  elif command -v node >/dev/null 2>&1; then
+    NODE_CMD=("$(command -v node)")
   elif [[ -x /Applications/Codex.app/Contents/Resources/cua_node/bin/node ]]; then
-    NODE_BIN="/Applications/Codex.app/Contents/Resources/cua_node/bin/node"
+    NODE_CMD=("/Applications/Codex.app/Contents/Resources/cua_node/bin/node")
   else
     echo "Node.js is required to update VS Code settings."
     exit 1
   fi
+else
+  NODE_CMD=("$NODE_BIN")
 fi
 
-VSCODE_SETTINGS_FILE="$SETTINGS_FILE" "$NODE_BIN" <<'EOF'
+VSCODE_SETTINGS_FILE="$SETTINGS_FILE" "${NODE_CMD[@]}" <<'EOF'
 const fs = require("node:fs");
 const path = process.env.VSCODE_SETTINGS_FILE;
 

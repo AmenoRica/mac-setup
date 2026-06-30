@@ -20,8 +20,9 @@ if ! grep -Fq "$HOMEBREW_SHELLENV" "${HOME}/.zprofile"; then
 fi
 
 brew update
-brew bundle --file "${ROOT_DIR}/Brewfile"
+brew bundle install --no-upgrade --file "${ROOT_DIR}/Brewfile"
 
+"${ROOT_DIR}/scripts/apply-mise-runtime.sh"
 "${ROOT_DIR}/scripts/install-nerd-symbols-font.sh"
 "${ROOT_DIR}/scripts/apply-codex-theme.sh"
 "${ROOT_DIR}/scripts/patch-yutapon-vscode-font.sh"

@@ -10,6 +10,7 @@ brew "neovim"
 brew "bat"
 brew "starship"
 brew "fonttools"
+brew "mise"
 
 # 문서 작업
 mas "Microsoft Excel", id: 462058435
